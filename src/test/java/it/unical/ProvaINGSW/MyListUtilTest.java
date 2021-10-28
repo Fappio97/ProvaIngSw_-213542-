@@ -75,13 +75,13 @@ public class MyListUtilTest
     }
     
     @Test
-    public void crescente() {
+    public void crescenteTest() {
     	assertEquals(Arrays.asList(0, 1, 2, 4, 5, 23, 24), myListUtil.sort(list, 0));
     	//assertEquals(Arrays.asList(0, 1, 2, 4, 5, 23, 24), myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 0));     
     }
     
     @Test
-    public void decrescente() {
+    public void decrescenteTest() {
     	assertEquals(Arrays.asList(24, 23, 5, 4, 2, 1, 0), myListUtil.sort(list, 1));        
     }
 }
