@@ -16,7 +16,7 @@ public class MyListUtil
 			return null;
 		
 		if(list.size() == 0)
-			return list;
+			return null;
 		
 		List<Integer> l = new ArrayList<Integer>();
 		
