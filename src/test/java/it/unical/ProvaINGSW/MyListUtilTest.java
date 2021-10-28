@@ -19,30 +19,16 @@ public class MyListUtilTest
 {
 
 	private static MyListUtil myListUtil;
-	private static List<Integer> list;
 	private static DateTime time;
+	
 	@BeforeClass
 	public static void beforeClass() {
 		time = new DateTime();
 		System.out.println("Data ed orario inizio di tutti i test " + time.toString().substring(0, 23).replace("T", " "));
 		
-		myListUtil = new MyListUtil();
-		
-		list = new ArrayList<Integer>();
-		inizializzaLista();
-		
+		myListUtil = new MyListUtil();		
 	}
-	
-	private static void inizializzaLista() {
-		list.add(2);
-		list.add(5);
-		list.add(1);
-		list.add(23);
-		list.add(4);
-		list.add(24);
-		list.add(0);		
-	}
-	
+
 	@Before
 	public void before() {
 		time = DateTime.now();		
@@ -61,11 +47,11 @@ public class MyListUtilTest
 	
     @Test
     public void orderInvalidoTest() {
-        assertEquals(null, myListUtil.sort(list, -1));
-        assertEquals(null, myListUtil.sort(list, 2));
-        assertEquals(null, myListUtil.sort(list, 3));
-        assertNotEquals(null, myListUtil.sort(list, 1));
-        assertNotEquals(null, myListUtil.sort(list, 0));        
+        assertEquals(null, myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), -1));
+        assertEquals(null, myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 2));
+        assertEquals(null, myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 3));
+        assertNotEquals(null, myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 1));
+        assertNotEquals(null, myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 0));        
     }
     
     @Test
@@ -76,12 +62,17 @@ public class MyListUtilTest
     
     @Test
     public void crescenteTest() {
-    	assertEquals(Arrays.asList(0, 1, 2, 4, 5, 23, 24), myListUtil.sort(list, 0));
-    	//assertEquals(Arrays.asList(0, 1, 2, 4, 5, 23, 24), myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 0));     
+    	assertEquals(Arrays.asList(0, 1, 2, 4, 5, 23, 24), myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 0)); 
+    	assertEquals(Arrays.asList(0, 1, 1, 2, 2, 2, 2), myListUtil.sort(Arrays.asList(2, 2, 2, 2, 1, 1, 0), 0));
+    	assertEquals(Arrays.asList(0), myListUtil.sort(Arrays.asList(0), 0));
+    	assertEquals(Arrays.asList(0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 15, 19, 22, 100, 100000), myListUtil.sort(Arrays.asList(15, 22, 100000, 19, 2, 2, 100, 3, 3, 2, 3, 3, 2, 1, 1, 0), 0));
     }
     
     @Test
     public void decrescenteTest() {
-    	assertEquals(Arrays.asList(24, 23, 5, 4, 2, 1, 0), myListUtil.sort(list, 1));        
+    	assertEquals(Arrays.asList(24, 23, 5, 4, 2, 1, 0), myListUtil.sort(Arrays.asList(2, 5, 4, 23, 24, 1, 0), 1));        
+    	assertEquals(Arrays.asList(2, 2, 2, 2, 1, 1, 0), myListUtil.sort(Arrays.asList(2, 2, 2, 2, 1, 1, 0), 1));
+    	assertEquals(Arrays.asList(0), myListUtil.sort(Arrays.asList(0), 1));
+    	assertEquals(Arrays.asList(100000, 100, 22, 19, 15, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 0), myListUtil.sort(Arrays.asList(15, 22, 100000, 19, 2, 2, 100, 3, 3, 2, 3, 3, 2, 1, 1, 0), 1));
     }
 }
